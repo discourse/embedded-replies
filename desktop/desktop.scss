@@ -1,3 +1,5 @@
+@import "variables";
+
 nav.post-controls {
   .actions {
     overflow-x: auto;
@@ -48,30 +50,14 @@ nav.post-controls {
         .row {
           // Main reply line
           &:before {
-            content: "";
-            position: absolute;
-            top: -22px;
-            width: 1px;
-            height: 100%;
-            background: var(--primary-300);
-            left: 32px;
+            @include replies-below;
           }
         }
       }
       .row {
         // Main reply line
         &:before {
-          content: "";
-          position: absolute;
-          top: -22px;
-          width: 1px;
-          height: calc(100% + 1.5em);
-          background: var(--primary-300);
-          left: 32px;
-        }
-        .topic-avatar,
-        .topic-body {
-          border-top: 1px solid transparent;
+          @include replies-below;
         }
         .topic-avatar {
           padding-left: 9px;
@@ -159,13 +145,7 @@ nav.post-controls {
       .topic-body {
         overflow: visible;
         &::before {
-          content: "";
-          position: absolute;
-          top: 16px;
-          width: 1px;
-          height: calc(100% + 1.5em);
-          background: var(--primary-300);
-          left: -22px;
+          @include replies-above;
         }
       }
     }
@@ -174,4 +154,11 @@ nav.post-controls {
 
 .time-gap+.topic-post .embedded-posts.top {
   border-bottom: none;
+}
+
+.boxed.onscreen-post.replies-above,
+.replies-below .embedded-posts.bottom .row {
+  .topic-avatar,.topic-body {
+    border-top: none;
+  }
 }
