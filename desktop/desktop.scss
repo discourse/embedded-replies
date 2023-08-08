@@ -1,5 +1,6 @@
+@import "theme-mixins";
+
 nav.post-controls {
-  overflow-x: hidden;
   .actions {
     overflow-x: auto;
   }
@@ -17,10 +18,9 @@ nav.post-controls {
       margin-left: 0;
     }
     &[aria-expanded="true"] {
-      padding: 8px;
       background: var(--primary-low);
       color: var(--primary-high);
-      border: 2px solid var(--primary-300);
+      box-shadow: 0px 0px 0px 1px var(--primary-300);
       z-index: 1;
       .d-icon {
         color: var(--primary-high);
@@ -40,7 +40,6 @@ nav.post-controls {
   &.bottom {
     position: relative;
     max-width: calc(100% - 66px);
-    margin-left: auto;
     margin-bottom: 30px;
     border: none;
     > div {
@@ -51,47 +50,19 @@ nav.post-controls {
         .row {
           // Main reply line
           &:before {
-            content: "";
-            position: absolute;
-            top: -22px;
-            width: 2px;
-            height: 100%;
-            background: var(--primary-300);
-            left: -30px;
+            @include replies-below;
           }
         }
       }
       .row {
         // Main reply line
         &:before {
-          content: "";
-          position: absolute;
-          top: -22px;
-          width: 2px;
-          height: calc(100% + 1.5em);
-          background: var(--primary-300);
-          left: -30px;
-        }
-        .topic-avatar,
-        .topic-body {
-          border-top: 1px solid transparent;
+          @include replies-below;
         }
         .topic-avatar {
+          padding-left: 9px;
           .post-avatar {
             position: relative;
-            // Avatar connects line to the main reply line
-            &:before {
-              content: "";
-              width: 75%;
-              height: 100%;
-              overflow: hidden;
-              position: absolute;
-              left: -100%;
-              bottom: calc(50% - 2px);
-              border: 2px solid var(--primary-300);
-              border-width: 0 0 2px 2px;
-              border-bottom-left-radius: 12px;
-            }
           }
         }
         .topic-body {
@@ -106,12 +77,7 @@ nav.post-controls {
               }
               .post-info.arrow {
                 display: block;
-                padding: 0.5em 0.65em;
                 margin-right: 0;
-                background: var(--tertiary);
-                color: var(--secondary);
-                border-radius: var(--d-button-border-radius);
-                font-size: var(--font-down-1);
                 .d-icon {
                   margin-left: 0;
                 }
@@ -120,7 +86,7 @@ nav.post-controls {
                 }
                 &:hover,
                 &:focus {
-                  background: var(--tertiary-hover);
+                  color: var(--primary-high);
                 }
               }
             }
@@ -135,9 +101,9 @@ nav.post-controls {
     .collapse-up {
       background: var(--primary-low);
       color: var(--primary-high);
-      border: 2px solid var(--primary-300);
+      border: 1px solid var(--primary-300);
       padding: 6px;
-      left: -29px;
+      left: 32px;
       bottom: -3em;
       z-index: 1;
       .archetype-private_message & {
@@ -155,7 +121,44 @@ nav.post-controls {
       }
     }
   }
-  .topic-avatar {
+  &.bottom .topic-avatar {
     padding-left: 1em;
+  }
+}
+
+.topic-post .embedded-posts {
+  &.top {
+    margin-left: 0px;
+    border: none;
+    .collapse-down {
+      transform: translate(17%, 230%);
+      z-index: 1;
+    }
+    .row {
+      .topic-body,
+      .topic-avatar {
+        border-top: none;
+      }
+      .topic-avatar {
+        padding-left: 0;
+      }
+      .topic-body {
+        overflow: visible;
+        &::before {
+          @include replies-above;
+        }
+      }
+    }
+  }
+}
+
+.time-gap+.topic-post .embedded-posts.top {
+  border-bottom: none;
+}
+
+.boxed.onscreen-post.replies-above,
+.replies-below .embedded-posts.bottom .row {
+  .topic-avatar,.topic-body {
+    border-top: none;
   }
 }

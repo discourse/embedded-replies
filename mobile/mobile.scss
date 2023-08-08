@@ -1,8 +1,6 @@
+@import "theme-mixins";
+
 .topic-post nav.post-controls {
-  overflow-x: hidden;
-  .actions {
-    overflow-x: auto;
-  }
   .show-replies {
     display: flex;
     align-items: center;
@@ -12,11 +10,11 @@
       margin-left: 0;
     }
     &[aria-expanded="true"] {
-      padding: 7px;
       background: var(--primary-low);
       color: var(--primary-high);
-      border: 2px solid var(--primary-300);
+      box-shadow: 0px 0px 0px 1px var(--primary-300);
       z-index: 1;
+      margin-left: 1px;
       .d-icon {
         color: var(--primary-high);
       }
@@ -30,7 +28,6 @@
 }
 
 // Embedded Replies
-
 .embedded-posts {
   position: relative;
   padding: 0.75em 0.5em;
@@ -47,9 +44,9 @@
       &:before {
         content: "";
         position: absolute;
-        top: 0px;
-        width: 2px;
-        height: calc(100% + 1.5em);
+        top: calc(-2px - 0.75em);
+        width: 1px;
+        height: calc(100% + 1.5em + 5px);
         background: var(--primary-300);
         left: -32px;
       }
@@ -61,19 +58,6 @@
         img.avatar {
           width: 32px;
           height: 32px;
-        }
-        // Avatar connects line to the main reply line
-        &:before {
-          content: "";
-          width: 75%;
-          height: calc(100% - 2px);
-          overflow: hidden;
-          position: absolute;
-          left: -100%;
-          bottom: calc(50% - 2px);
-          border: 2px solid var(--primary-300);
-          border-width: 0 0 2px 2px;
-          border-bottom-left-radius: 12px;
         }
       }
     }
@@ -99,14 +83,16 @@
           position: absolute;
           bottom: 0;
           .post-info.arrow {
-            padding: 0.5em 0.65em;
+            padding: 0.5em 0;
             margin-right: 0;
-            background: var(--tertiary);
-            color: var(--secondary);
-            border-radius: var(--d-button-border-radius);
+            color: var(--primary-med-or-secondary-high);
             line-height: 1;
             &:after {
               content: "#{$jump_to_post}";
+            }
+            &:hover,
+            &:focus {
+              color: var(--primary-high);
             }
           }
         }
@@ -118,9 +104,9 @@
     padding: 6px;
     color: var(--primary-high);
     background: var(--primary-low);
-    border: 2px solid var(--primary-300);
     z-index: 1;
     transform: translate(-150%, -30%);
+    box-shadow: 0px 0px 0px 1px var(--primary-300);
     .archetype-private_message & {
       display: flex;
     }
