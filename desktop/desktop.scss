@@ -1,5 +1,3 @@
-@import "theme-mixins";
-
 nav.post-controls {
   .actions {
     overflow-x: auto;
@@ -50,14 +48,26 @@ nav.post-controls {
         .row {
           // Main reply line
           &:before {
-            @include replies-below;
+            content: "";
+            position: absolute;
+            top: -22px;
+            width: 1px;
+            height: calc(100% + 1.25em);
+            background: var(--primary-300);
+            left: 32px;
           }
         }
       }
       .row {
         // Main reply line
         &:before {
-          @include replies-below;
+          content: "";
+          position: absolute;
+          top: -22px;
+          width: 1px;
+          height: calc(100% + 1.5em);
+          background: var(--primary-300);
+          left: 32px;
         }
         .topic-avatar {
           padding-left: 9px;
@@ -145,20 +155,32 @@ nav.post-controls {
       .topic-body {
         overflow: visible;
         &::before {
-          @include replies-above;
+          content: "";
+          position: absolute;
+          top: 16px;
+          width: 1px;
+          height: calc(100% + 1.5em);
+          background: var(--primary-300);
+          left: -22px;
         }
       }
     }
   }
 }
 
-.time-gap+.topic-post .embedded-posts.top {
+.time-gap + .topic-post .embedded-posts.top {
   border-bottom: none;
 }
 
 .boxed.onscreen-post.replies-above,
 .replies-below .embedded-posts.bottom .row {
-  .topic-avatar,.topic-body {
+  .topic-avatar,
+  .topic-body {
     border-top: none;
   }
+}
+
+.embedded-posts.bottom .row .topic-avatar,
+.embedded-posts.bottom .row .topic-body {
+  border-top: none;
 }
