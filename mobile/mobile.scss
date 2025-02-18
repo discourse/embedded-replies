@@ -52,7 +52,7 @@
       }
     }
     .topic-avatar {
-      @include sticky;
+      position: sticky;
       top: calc(var(--header-offset) + 0.5em);
       .post-avatar {
         img.avatar {
