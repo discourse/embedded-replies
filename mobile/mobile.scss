@@ -5,19 +5,23 @@
     display: flex;
     align-items: center;
     padding: 9px;
+
     .d-icon {
       padding-left: var(--control-space);
       margin-left: 0;
     }
+
     &[aria-expanded="true"] {
       background: var(--primary-low);
       color: var(--primary-high);
-      box-shadow: 0px 0px 0px 1px var(--primary-300);
+      box-shadow: 0 0 0 1px var(--primary-300);
       z-index: 1;
       margin-left: 1px;
+
       .d-icon {
         color: var(--primary-high);
       }
+
       &:hover,
       &:focus {
         color: var(--primary);
@@ -33,15 +37,17 @@
   padding: 0.75em 0.5em;
   max-width: calc(100% - 62px);
   margin-left: auto;
+
   > div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
     margin-bottom: 1.5em;
+
     .row {
       // Main reply line
-      &:before {
+      &::before {
         content: "";
         position: absolute;
         top: calc(-2px - 0.75em);
@@ -51,9 +57,11 @@
         left: -32px;
       }
     }
+
     .topic-avatar {
       position: sticky;
       top: calc(var(--header-offset) + 0.5em);
+
       .post-avatar {
         img.avatar {
           width: 32px;
@@ -61,6 +69,7 @@
         }
       }
     }
+
     .topic-body {
       display: flex;
       flex-direction: column;
@@ -68,28 +77,36 @@
       margin-left: auto;
       gap: 0.25em 0;
       padding-bottom: 1.5em;
+
       .topic-meta-data.embedded-reply {
         margin-left: 0;
+
         .names {
           margin-bottom: 0.25em;
+
           .user-title {
             display: none;
           }
+
           .second {
             flex-basis: auto;
           }
         }
+
         .post-link-arrow {
           position: absolute;
           bottom: 0;
+
           .post-info.arrow {
             padding: 0.5em 0;
             margin-right: 0;
             color: var(--primary-med-or-secondary-high);
             line-height: 1;
-            &:after {
+
+            &::after {
               content: "#{$jump_to_post}";
             }
+
             &:hover,
             &:focus {
               color: var(--primary-high);
@@ -99,6 +116,7 @@
       }
     }
   }
+
   .collapse-up {
     position: relative;
     padding: 6px;
@@ -106,16 +124,20 @@
     background: var(--primary-low);
     z-index: 1;
     transform: translate(-150%, -30%);
-    box-shadow: 0px 0px 0px 1px var(--primary-300);
+    box-shadow: 0 0 0 1px var(--primary-300);
+
     .archetype-private_message & {
       display: flex;
     }
+
     .d-icon {
       transform: scale(0.871);
     }
+
     &:hover,
     &:focus {
       background: var(--primary-300);
+
       .d-icon {
         color: var(--primary);
       }
